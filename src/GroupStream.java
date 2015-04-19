@@ -1,4 +1,6 @@
+import java.time.Clock;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -69,9 +71,9 @@ public void finishRecord(LocalDateTime finish, int channel)
 	
 }
 
-public String displayRecords(){
+public String displayRecords(Clock clock){
 	String records = "";
-	LocalDateTime now = LocalDateTime.now();
+	LocalDateTime now = LocalDateTime.now(clock);
 	for(int i = 0; i<completedRuns.size(); i++){
 		TimingRecord currentRecord = completedRuns.get(i);
 		if(i == completedRuns.size()-1){
@@ -80,5 +82,7 @@ public String displayRecords(){
 	}
 	return records;
 }
+
+
 
 }

@@ -18,7 +18,6 @@ public class DisplayUpdater extends TimerTask {
 		if(t._isOn){
 			c.setText("");
 			c.setText(t.updateDisplay());
-			System.out.println("Printing...");
 		}
 	}
 

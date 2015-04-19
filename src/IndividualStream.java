@@ -1,4 +1,6 @@
+import java.time.Clock;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -73,9 +75,9 @@ public void finishRecord(LocalDateTime finish, int channel)
 	
 }
 
-public String displayRecords(){
+public String displayRecords(Clock clock){
 	String records = "";
-	LocalDateTime now = LocalDateTime.now();
+	LocalDateTime now = LocalDateTime.now(clock);
 	for(TimingRecord t : pendingRuns){
 		records += t.get_BIB() + "\t" + now + "\n";
 	}

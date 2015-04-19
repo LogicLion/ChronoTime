@@ -209,7 +209,7 @@ public class ChronoTimer {
 	}
 	
 	public String updateDisplay(){
-		return _stream.displayRecords();
+		return _stream.displayRecords(clock);
 	}
 
 	

@@ -1,3 +1,4 @@
+import java.time.Clock;
 import java.time.LocalDateTime;
 
 
@@ -10,5 +11,5 @@ public interface IStream {
 	public void finishRecord(LocalDateTime finish, int channel);
 	public void DNFRecord();
 	public String toString();
-	public String displayRecords();
+	public String displayRecords(Clock clock);
 }
