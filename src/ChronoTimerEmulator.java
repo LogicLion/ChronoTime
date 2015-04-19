@@ -222,7 +222,6 @@ public class ChronoTimerEmulator extends JApplet {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						System.out.println("AYYYLMAO");
 					}
 				}
 			}

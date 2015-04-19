@@ -31,7 +31,6 @@ public void cancelRecord()
 {
 	runs.peek().cancel();
 	completedRuns.add(runs.poll());
-	_runNumber++;
 	System.out.println("Next Racer");
 }
 
@@ -46,7 +45,6 @@ public void finishRecord(LocalDateTime finish)
 {
 	runs.peek().finish(finish);
 	completedRuns.add(runs.poll());
-	_runNumber++;
 		
 }
 
@@ -54,7 +52,6 @@ public void DNFRecord()
 {
 	runs.peek().DNF();
 	completedRuns.add(runs.poll());
-	_runNumber++;
 }
 
 

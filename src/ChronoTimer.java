@@ -165,8 +165,10 @@ public class ChronoTimer {
 		{
 			if(printer == null)
 				System.out.println(_stream.toString());
-			else
+			else{
+				printer.setText("");
 				printer.setText(_stream.toString());
+			}
 		}
 	}
 
