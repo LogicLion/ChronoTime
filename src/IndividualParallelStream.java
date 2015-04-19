@@ -78,7 +78,7 @@ public String displayRecords(){
 		Duration time = Duration.between(t.get_start(), now);
 		records +=  t.get_BIB() + "\t" + time.getSeconds() + "." + time.getNano() + "\n";
 	}
-	if(completedRuns != null){
+	if(completedRuns != null && completedRuns.size() != 0){
 		TimingRecord lastRun = completedRuns.get(completedRuns.size() - 1);
 		records += lastRun.get_BIB() + "\t" + lastRun.get_duration().getSeconds() + "." + lastRun.get_duration().getNano() + "\n";
 	}

@@ -194,7 +194,7 @@ public class Command
     	else if(this.cmdName.equals("ENDRUN")){
     		timer.endRun();
     	}
-    	else if(this.cmdName.equals())
+    	else if(this.cmdName.equals("")){}
     	else{
     		System.out.println(" dpofjpwf :   " + this.cmdName);
     		throw new Exception("Invalid command name");

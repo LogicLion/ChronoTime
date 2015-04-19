@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.Timer;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JTextArea;
@@ -45,6 +46,8 @@ public class ChronoTimerEmulator extends JApplet {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		
+		
 		JButton powerButton = new JButton("Power");
 		powerButton.setBounds(33, 20, 68, 29);
 		powerButton.addActionListener(new ActionListener(){
@@ -77,7 +80,8 @@ public class ChronoTimerEmulator extends JApplet {
 		printerText.setBounds(516, 52, 262, 160);
 		panel.add(printerText);
 		
-	
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new DisplayUpdater(t, consoleText), 0, 1000);
 		
 		JLabel lblNewLabel = new JLabel("CHRONOTIMER 1009");
 		lblNewLabel.setBounds(387, 6, 140, 16);
@@ -598,8 +602,8 @@ public class ChronoTimerEmulator extends JApplet {
 					e1.printStackTrace();
 				}
 			}
-			
 		});
+		
 		panel.add(btnNewButton);
 		
 		JButton btnEndrun = new JButton("ENDRUN");
