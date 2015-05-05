@@ -1,5 +1,8 @@
 package Streams;
+import java.io.DataOutputStream;
 import java.io.StringWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -8,6 +11,9 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class IndividualStream implements IStream {
 
@@ -86,10 +92,23 @@ public String displayRecords(Clock clock){
 	}
 	if(completedRuns != null && completedRuns.size() != 0){
 		TimingRecord lastRun = completedRuns.get(completedRuns.size() - 1);
-		records += lastRun.get_BIB() + "\t" + lastRun.get_duration().getSeconds() + "." + lastRun.get_duration().getNano() + "\n";
+		records += lastRun.toString();
 	}
 	return records;
 }
 
+
+
+public String toJSON(Clock clock){
+	Gson g = new Gson();
+	ArrayList<ServerExportRecordFile> serfs = new ArrayList<ServerExportRecordFile>();
+	for(TimingRecord i : completedRuns)
+	{
+		serfs.add(new ServerExportRecordFile(_runNumber, i.get_duration() , i.get_BIB(), i.get_eventCode()));
+	}	
+	String listItOut = g.toJson(serfs);
+	System.out.println(listItOut);
+	return listItOut;
+}
 
 }

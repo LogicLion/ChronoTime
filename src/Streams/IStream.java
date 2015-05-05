@@ -13,4 +13,5 @@ public interface IStream {
 	public void DNFRecord();
 	public String toString();
 	public String displayRecords(Clock clock);
+	public String toJSON(Clock clock);
 }

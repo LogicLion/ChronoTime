@@ -1,7 +1,11 @@
 package ChronoTimers;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -24,12 +28,16 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
+import com.google.gson.Gson;
+
 import Channels.Channel;
 import Streams.GroupParallelStream;
 import Streams.GroupStream;
 import Streams.IStream;
 import Streams.IndividualParallelStream;
 import Streams.IndividualStream;
+import Streams.ServerExportRecordFile;
+import Streams.TimingRecord;
 public class ChronoTimer {
 	
 
@@ -216,6 +224,22 @@ public class ChronoTimer {
 		PrintWriter writer = new PrintWriter(file);
 		writer.println(_streams.get(runNumber-1).toString());
 		writer.close();
+		try{
+			String jsonList = _streams.get(runNumber-1).toJSON(clock);
+			URL site = new URL("http://1-dot-chronotimerserverth.appspot.com/chronotimerserver");
+			
+			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
+			out.writeBytes("data=" + jsonList);
+			out.close();
+			new InputStreamReader(conn.getInputStream()); 
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
 	}
 	
 	public String updateDisplay(){
